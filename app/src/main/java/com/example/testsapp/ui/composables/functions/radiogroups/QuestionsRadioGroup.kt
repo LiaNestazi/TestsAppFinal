@@ -20,10 +20,6 @@ import com.example.testsapp.viewmodels.MainViewModel
 @Composable
 fun QuestionsRadioGroup(mainViewModel: MainViewModel, questionCount: Int){
     val mainOrange = colorResource(id = R.color.main_orange)
-    val onSelectionChange = { text: String ->
-        mainViewModel.selectedQuestion.value = text.toInt()
-    }
-
     val list = mutableListOf<String>()
     for (question_number in 1..questionCount){
         list.add(question_number.toString())
@@ -45,7 +41,7 @@ fun QuestionsRadioGroup(mainViewModel: MainViewModel, questionCount: Int){
             val buttonColor = {
                 if (isSelected()) mainOrange else Color.White
             }
-            FloatingActionButton(onClick = { onSelectionChange(question_number) },
+            FloatingActionButton(onClick = {},
                 modifier = Modifier
                     .size(45.dp),
                 shape = RoundedCornerShape(15.dp),
