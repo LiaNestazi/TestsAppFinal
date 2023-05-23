@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestsApp</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="title_activity_notifications">NotificationsActivity</string>
+    <string name="title_activity_security">SecurityActivity</string>
+    <string name="title_activity_requests">RequestsActivity</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_add_test">AddTestActivity</string>
+</resources>

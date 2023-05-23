@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.TestsApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:colorSecondary">@color/main_orange</item>
+        <item name="android:colorPrimary">@color/main_orange</item>
+    </style>
+    <style name="DialogTheme" parent="android:Theme.Material.Light">
+        <item name="android:colorAccent">@color/main_orange</item>
+        <item name="android:colorPrimary">@color/main_orange</item>
+        <item name="android:colorSecondary">@color/main_orange</item>
+        <item name="android:color">@color/main_orange</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+</resources>
