@@ -194,10 +194,6 @@ fun ResultsPage(navController: NavHostController, mainViewModel: MainViewModel, 
                         }
 
                     }
-
-
-
-
                     //Оценка теста
                     if (openRatingDialog.value){
                         AlertDialog(

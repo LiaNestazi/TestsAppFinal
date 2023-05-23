@@ -38,18 +38,6 @@ fun TestInfoPage(navController: NavHostController, mainViewModel: MainViewModel,
                 CircularProgressIndicator(color = colorResource(id = R.color.main_orange))
             }
             else ->{
-                val start = remember {
-                    if (test.value.start_date == "" || test.value.start_time == "")
-                        mutableStateOf("Не установлено")
-                    else
-                        mutableStateOf(test.value.start_date+" "+test.value.start_time)
-                }
-                val end = remember {
-                    if (test.value.end_date == "" || test.value.end_time == "")
-                        mutableStateOf("Не установлено")
-                    else
-                        mutableStateOf(test.value.end_date+" "+test.value.end_time)
-                }
                 val author = remember {
                     if (test.value.author_login == "")
                         mutableStateOf("Без автора")
@@ -92,30 +80,6 @@ fun TestInfoPage(navController: NavHostController, mainViewModel: MainViewModel,
                                 modifier = Modifier.padding(top = 8.dp)
                             )
                             Text(text = test.value.question_count.toString(),
-                                fontSize = 16.sp,
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier.padding(top = 8.dp)
-                            )
-                        }
-                        Row{
-                            Text(text = "Дата и время начала: ",
-                                fontSize = 16.sp,
-                                style = MaterialTheme.typography.h1,
-                                modifier = Modifier.padding(top = 8.dp)
-                            )
-                            Text(text = start.value,
-                                fontSize = 16.sp,
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier.padding(top = 8.dp)
-                            )
-                        }
-                        Row{
-                            Text(text = "Дата и время окончания: ",
-                                fontSize = 16.sp,
-                                style = MaterialTheme.typography.h1,
-                                modifier = Modifier.padding(top = 8.dp)
-                            )
-                            Text(text = end.value,
                                 fontSize = 16.sp,
                                 style = MaterialTheme.typography.body1,
                                 modifier = Modifier.padding(top = 8.dp)
