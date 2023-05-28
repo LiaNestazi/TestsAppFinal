@@ -7,8 +7,5 @@ data class User(
     var login: String = "",
     var password: String = "",
     var role: String = "",
-    var profile_photo_url: String = "",
-    var profile_cover_url: String = "",
-    var groups_ids: MutableList<String> = mutableListOf(),
     var results: MutableList<Result> = mutableListOf()
 )

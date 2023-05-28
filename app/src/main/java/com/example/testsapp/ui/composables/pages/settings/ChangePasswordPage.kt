@@ -20,10 +20,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.testsapp.R
+import com.example.testsapp.singletone.SingletoneFirebase
 import com.example.testsapp.ui.composables.functions.custom.Header
+import com.example.testsapp.viewmodels.MainViewModel
 
 @Composable
-fun ChangePasswordPage(navController: NavHostController){
+fun ChangePasswordPage(navController: NavHostController, mainViewModel: MainViewModel){
+    val currentUser = mainViewModel.currentUser.value
     val oldPassword = remember{
         mutableStateOf("")
     }
@@ -117,8 +120,19 @@ fun ChangePasswordPage(navController: NavHostController){
         Button(onClick = {
             if (newPassword.value != "" && oldPassword.value != "" && newPasswordAgain.value != ""){
                 if (newPassword.value == newPasswordAgain.value){
-                    navController.popBackStack()
-                    Toast.makeText(context,"Пароль успешно изменен!", Toast.LENGTH_SHORT).show()
+
+                    if (!oldPassword.value.equals(currentUser.password)){
+                        Toast.makeText(context,"Неверный пароль!", Toast.LENGTH_SHORT).show()
+                    } else{
+                        SingletoneFirebase.instance.auth.currentUser?.updatePassword(newPassword.value)
+                        currentUser.password = newPassword.value
+                        SingletoneFirebase.instance.database.getReference("Users").child(currentUser.id).setValue(
+                            currentUser
+                        )
+                        mainViewModel.currentUser.value = currentUser
+                        navController.popBackStack()
+                        Toast.makeText(context,"Пароль успешно изменен!", Toast.LENGTH_SHORT).show()
+                    }
                 } else{
                     isError.value = true
                 }

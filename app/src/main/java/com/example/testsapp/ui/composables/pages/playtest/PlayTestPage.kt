@@ -1,6 +1,5 @@
 package com.example.testsapp.ui.composables.pages.playtest
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -42,7 +41,6 @@ fun PlayTestPage(navController: NavHostController, mainViewModel: MainViewModel,
         SingletoneFirebase.instance.database.getReference("Tests").child(item_id).get().addOnSuccessListener {
             test.value = it.getValue(Test::class.java) as Test
             questions.value = test.value.questions
-            Log.d("MyTag", test.toString())
         }
     }
     var isTimeRanOut: Boolean
@@ -155,7 +153,6 @@ fun PlayTestPage(navController: NavHostController, mainViewModel: MainViewModel,
                                 if (mainViewModel.selectedAnswersIndexes[questionNum] != -1){
                                     startValue = questions.value[questionNum].answers[mainViewModel.selectedAnswersIndexes[questionNum]]
                                 }
-                                Log.d("MyTag", "start value $startValue")
 
                                 forLog=AnswersRadioGroup(startValue, mainViewModel, questions.value)
                                 mainViewModel.selectedAnswersIndexes[mainViewModel.selectedQuestion.value-1] = forLog
@@ -172,7 +169,6 @@ fun PlayTestPage(navController: NavHostController, mainViewModel: MainViewModel,
                                     if (mainViewModel.selectedQuestion.value-1 > 0){
                                         mainViewModel.selectedQuestion.value = mainViewModel.selectedQuestion.value - 1
                                     }
-                                    Log.d("MyTag","selected answers indexes"+" $forLog"+" ${mainViewModel.selectedAnswersIndexes}")
                                     nextText.value = "Следующий вопрос"
                                     isPrevEnabled.value = mainViewModel.selectedQuestion.value != 1
                                 },
@@ -203,13 +199,10 @@ fun PlayTestPage(navController: NavHostController, mainViewModel: MainViewModel,
                                     if (nextText.value != "Завершить тест"){
                                         if (mainViewModel.selectedQuestion.value+1 < test.value.question_count){
                                             mainViewModel.selectedQuestion.value = mainViewModel.selectedQuestion.value + 1
-                                            Log.d("MyTag","selected question"+mainViewModel.selectedQuestion.value)
-                                            Log.d("MyTag","selected answers indexes"+" $forLog"+" ${mainViewModel.selectedAnswersIndexes}")
                                             nextText.value = "Следующий вопрос"
                                         }
                                         else{
                                             mainViewModel.selectedQuestion.value = mainViewModel.selectedQuestion.value + 1
-                                            Log.d("MyTag","selected question"+mainViewModel.selectedQuestion.value)
                                             nextText.value = "Завершить тест"
                                         }
                                         if (test.value.type == "Тест"){
@@ -217,7 +210,6 @@ fun PlayTestPage(navController: NavHostController, mainViewModel: MainViewModel,
                                         }
                                     } else{
                                         navController.navigate("ResultsPage/$item_id")
-                                        Log.d("MyTag","selected answers indexes"+" ${mainViewModel.selectedAnswersIndexes}")
                                     }
 
                                 },

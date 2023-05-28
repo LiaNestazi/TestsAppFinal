@@ -25,7 +25,6 @@ import com.example.testsapp.viewmodels.MainViewModel
 
 
 class MainActivity : ComponentActivity() {
-
     val mainViewModel: MainViewModel by viewModels()
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
